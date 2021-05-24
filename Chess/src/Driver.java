@@ -15,10 +15,27 @@ import javax.swing.SwingConstants;
 
 public class Driver extends JPanel{
 
-	BufferedImage knight;
-	BufferedImage rook;
-	BufferedImage bishop;
-	BufferedImage pawn;
+	BufferedImage wknight;
+	BufferedImage wknight2;
+	
+	BufferedImage wrook;
+	BufferedImage wrook2;
+	
+	BufferedImage wbishop;
+	BufferedImage wbishop2;
+	
+	BufferedImage wpawn;
+	BufferedImage wpawn1;
+	BufferedImage wpawn2;
+	BufferedImage wpawn3;
+	BufferedImage wpawn4;
+	BufferedImage wpawn5;
+	BufferedImage wpawn6;
+	BufferedImage wpawn7;
+	BufferedImage wpawn8;
+	
+	BufferedImage wqueen;
+	BufferedImage wking;
 	
 	
 	public void paint(Graphics g) {
@@ -41,18 +58,51 @@ public class Driver extends JPanel{
 			a++;
 		}
 	   
-	    g.drawImage(knight, 100, 700, 100, 100, this);
-	    g.drawImage(knight,  600,  700, 100, 100,  this);
-	    g.drawImage(rook,  0,  700,  100, 100, this);
-	    g.drawImage(rook,  700,  700,  100, 100, this);
+		g.drawImage(wpawn, 0,  602,  100,  95, this);
+		g.drawImage(wpawn2, 100,  602,  100,  95, this);
+		g.drawImage(wpawn3, 200,  602,  100,  95, this);
+		g.drawImage(wpawn4, 300,  602,  100,  95, this);
+		g.drawImage(wpawn5, 400,  602,  100,  95, this);
+		g.drawImage(wpawn6, 500,  602,  100,  95, this);
+		g.drawImage(wpawn7, 600,  602,  100,  95, this);
+		g.drawImage(wpawn8, 700,  602,  100,  95, this);
+		
+	    g.drawImage(wknight, 100, 705, 100, 90, this);
+	    g.drawImage(wknight2,  600,  705, 100, 90,  this);
+	    
+	    g.drawImage(wrook,  0,  695,  100, 100, this);
+	    g.drawImage(wrook2,  700,  695,  100, 100, this);
+	    
+	    g.drawImage(wbishop,  200,  700,  100, 100, this);
+	    g.drawImage(wbishop2,  500,  700,  100, 100, this); 
+	    
+	    g.drawImage(wqueen,  300,  700,  100, 100, this);
+	    g.drawImage(wking,  400,  700,  100, 100, this); 
 	}
 	
 	public Driver() {
-				knight = createImg("images/knight.png");
-				rook = createImg("images/rook.png");
-				bishop = createImg("images/bishop.png");
-				pawn = createImg("images/pawn.png");
+				wknight = createImg("images/knight.png");
+				wknight2 = createImg("images/knight.png");
+				
+				wrook = createImg("images/rook.png");
+				wrook2 = createImg("images/rook.png");
+				
+				wbishop = createImg("images/bishop.png");
+				wbishop2 = createImg("images/bishop.png");
+				
+				wpawn = createImg("images/pawn.png");
+				wpawn2 = createImg("images/pawn.png");
+				wpawn3 = createImg("images/pawn.png");
+				wpawn4 = createImg("images/pawn.png");
+				wpawn5 = createImg("images/pawn.png");
+				wpawn6 = createImg("images/pawn.png");
+				wpawn7 = createImg("images/pawn.png");
+				wpawn8 = createImg("images/pawn.png");
+				
+				wqueen = createImg("images/queen.png");
+				wking = createImg("images/king.png");
 	}
+				
 	
 	public BufferedImage createImg(String a) {
 		try {
