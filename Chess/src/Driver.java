@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class Driver extends JPanel{
+	Piece[][] board = new Piece[8][8];
 
+	//white pieces
 	BufferedImage wknight;
 	BufferedImage wknight2;
 	
@@ -36,6 +38,29 @@ public class Driver extends JPanel{
 	
 	BufferedImage wqueen;
 	BufferedImage wking;
+	
+	//black pieces
+	BufferedImage bknight;
+	BufferedImage bknight2;
+	
+	BufferedImage brook;
+	BufferedImage brook2;
+	
+	BufferedImage bbishop;
+	BufferedImage bbishop2;
+	
+	BufferedImage bpawn;
+	BufferedImage bpawn1;
+	BufferedImage bpawn2;
+	BufferedImage bpawn3;
+	BufferedImage bpawn4;
+	BufferedImage bpawn5;
+	BufferedImage bpawn6;
+	BufferedImage bpawn7;
+	BufferedImage bpawn8;
+	
+	BufferedImage bqueen;
+	BufferedImage bking;
 	
 	
 	public void paint(Graphics g) {
