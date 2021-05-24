@@ -44,6 +44,7 @@ public class Driver extends JPanel{
 	    g.drawImage(knight, 100, 700, 100, 100, this);
 	    g.drawImage(knight,  600,  700, 100, 100,  this);
 	    g.drawImage(rook,  0,  700,  100, 100, this);
+	    g.drawImage(rook,  700,  700,  100, 100, this);
 	}
 	
 	public Driver() {
