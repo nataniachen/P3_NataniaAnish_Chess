@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -15,53 +17,54 @@ import javax.swing.SwingConstants;
 
 public class Driver extends JPanel{
 	Piece[][] board = new Piece[8][8];
-
+	
 	//white pieces
-	BufferedImage wknight;
-	BufferedImage wknight2;
+	Rook wrook1 = new Rook(57, "white");
+
+	Rook wrook2 = new Rook(64, "white");
 	
-	BufferedImage wrook;
-	BufferedImage wrook2;
+	Knight wknight1 = new Knight(58, "white");
+	Knight wknight2 = new Knight(63, "white");
 	
-	BufferedImage wbishop;
-	BufferedImage wbishop2;
 	
-	BufferedImage wpawn;
-	BufferedImage wpawn1;
-	BufferedImage wpawn2;
-	BufferedImage wpawn3;
-	BufferedImage wpawn4;
-	BufferedImage wpawn5;
-	BufferedImage wpawn6;
-	BufferedImage wpawn7;
-	BufferedImage wpawn8;
+	Bishop wbishop1 = new Bishop(59, "white");
+	Bishop wbishop2 = new Bishop(62, "white");
 	
-	BufferedImage wqueen;
-	BufferedImage wking;
+	Pawn wpawn1 = new Pawn(51, "white");
+	Pawn wpawn2 = new Pawn(52, "white");
+	Pawn wpawn3 = new Pawn(53, "white");
+	Pawn wpawn4 = new Pawn(54, "white");
+	Pawn wpawn5 = new Pawn(55, "white");
+	Pawn wpawn6 = new Pawn(56, "white");
+	Pawn wpawn7 = new Pawn(57, "white");
+	Pawn wpawn8 = new Pawn(58, "white");
+
+	Queen wqueen = new Queen(4, "white");
+	King wking = new King(3, "white");
 	
 	//black pieces
-	BufferedImage bknight;
-	BufferedImage bknight2;
+	Knight bknight1 = new Knight(2, "black");
+	Knight bknight2 = new Knight(7, "black");
 	
-	BufferedImage brook;
-	BufferedImage brook2;
+	Rook brook1 = new Rook(1, "black");
+	Rook brook2 = new Rook(8, "black");
 	
-	BufferedImage bbishop;
-	BufferedImage bbishop2;
+	Bishop bishop1 = new Bishop(3, "black");
+	Bishop bishop2 = new Bishop(6, "black");
 	
-	BufferedImage bpawn;
-	BufferedImage bpawn1;
-	BufferedImage bpawn2;
-	BufferedImage bpawn3;
-	BufferedImage bpawn4;
-	BufferedImage bpawn5;
-	BufferedImage bpawn6;
-	BufferedImage bpawn7;
-	BufferedImage bpawn8;
+	Pawn bpawn1 = new Pawn(9, "black");
+	Pawn bpawn2 = new Pawn(10, "black");
+	Pawn bpawn3 = new Pawn(11, "black");
+	Pawn bpawn4 = new Pawn(12, "black");
+	Pawn bpawn5 = new Pawn(13, "black");
+	Pawn bpawn6 = new Pawn(14, "black");
+	Pawn bpawn7 = new Pawn(15, "black");
+	Pawn bpawn8 = new Pawn(16, "black");
 	
-	BufferedImage bqueen;
-	BufferedImage bking;
+	Queen bqueen = new Queen(4, "black");
+	King bking = new King(3, "black");
 	
+	int turn = 0;
 	
 	public void paint(Graphics g) {
 		int a = 1;
@@ -82,63 +85,48 @@ public class Driver extends JPanel{
 			}
 			a++;
 		}
-	   
-		g.drawImage(wpawn, 0,  602,  100,  95, this);
-		g.drawImage(wpawn2, 100,  602,  100,  95, this);
-		g.drawImage(wpawn3, 200,  602,  100,  95, this);
-		g.drawImage(wpawn4, 300,  602,  100,  95, this);
-		g.drawImage(wpawn5, 400,  602,  100,  95, this);
-		g.drawImage(wpawn6, 500,  602,  100,  95, this);
-		g.drawImage(wpawn7, 600,  602,  100,  95, this);
-		g.drawImage(wpawn8, 700,  602,  100,  95, this);
+		drawPieces(g);
+	}
+	
+	public void drawPieces(Graphics g) {
+		g.drawImage(wpawn1.getImage(), 0,  602,  100,  95, this);
+		g.drawImage(wpawn2.getImage(), 100,  602,  100,  95, this);
+		g.drawImage(wpawn3.getImage(), 200,  602,  100,  95, this);
+		g.drawImage(wpawn4.getImage(), 300,  602,  100,  95, this);
+		g.drawImage(wpawn5.getImage(), 400,  602,  100,  95, this);
+		g.drawImage(wpawn6.getImage(), 500,  602,  100,  95, this);
+		g.drawImage(wpawn7.getImage(), 600,  602,  100,  95, this);
+		g.drawImage(wpawn8.getImage(), 700,  602,  100,  95, this);
 		
-	    g.drawImage(wknight, 100, 705, 100, 90, this);
-	    g.drawImage(wknight2,  600,  705, 100, 90,  this);
+	    g.drawImage(wknight1.getImage(), 100, 705, 100, 90, this);
+	    g.drawImage(wknight2.getImage(),  600,  705, 100, 90,  this);
 	    
-	    g.drawImage(wrook,  0,  695,  100, 100, this);
-	    g.drawImage(wrook2,  700,  695,  100, 100, this);
+	    g.drawImage(wrook1.getImage(),  0,  695,  100, 100, this);
+	    g.drawImage(wrook2.getImage(),  700,  695,  100, 100, this);
 	    
-	    g.drawImage(wbishop,  200,  700,  100, 100, this);
-	    g.drawImage(wbishop2,  500,  700,  100, 100, this); 
+	    g.drawImage(wbishop1.getImage(),  200,  700,  100, 100, this);
+	    g.drawImage(wbishop2.getImage(),  500,  700,  100, 100, this); 
 	    
-	    g.drawImage(wqueen,  300,  700,  100, 100, this);
-	    g.drawImage(wking,  400,  700,  100, 100, this); 
+	    g.drawImage(wqueen.getImage(),  400,  700,  100, 100, this);
+	    g.drawImage(wking.getImage(),  300,  700,  100, 100, this); 
+	    
+	    //drawing the pieces on the other side
+	    drawRotate(bking.getImage(), 400, 2, g);
+
 	}
 	
 	public Driver() {
-				wknight = createImg("images/knight.png");
-				wknight2 = createImg("images/knight.png");
-				
-				wrook = createImg("images/rook.png");
-				wrook2 = createImg("images/rook.png");
-				
-				wbishop = createImg("images/bishop.png");
-				wbishop2 = createImg("images/bishop.png");
-				
-				wpawn = createImg("images/pawn.png");
-				wpawn2 = createImg("images/pawn.png");
-				wpawn3 = createImg("images/pawn.png");
-				wpawn4 = createImg("images/pawn.png");
-				wpawn5 = createImg("images/pawn.png");
-				wpawn6 = createImg("images/pawn.png");
-				wpawn7 = createImg("images/pawn.png");
-				wpawn8 = createImg("images/pawn.png");
-				
-				wqueen = createImg("images/queen.png");
-				wking = createImg("images/king.png");
-	}
-				
-	
-	public BufferedImage createImg(String a) {
-		try {
-			return ImageIO.read(new File(a));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
 	}
 	
+	public void drawRotate(BufferedImage image, int x, int y, Graphics g) {
+	    double rotationRequired = Math.toRadians (180);
+		double locationX = image.getWidth() / 2;
+		double locationY = image.getHeight() / 2;
+		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+	    g.drawImage(op.filter(image, null), x, y, 100, 100, this);
+		
+	}
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Chess");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
