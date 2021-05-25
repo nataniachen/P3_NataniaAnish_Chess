@@ -4,6 +4,10 @@ import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -20,7 +24,6 @@ public class Driver extends JPanel{
 	
 	//white pieces
 	Rook wrook1 = new Rook(57, "white");
-
 	Rook wrook2 = new Rook(64, "white");
 	
 	Knight wknight1 = new Knight(58, "white");
@@ -49,8 +52,8 @@ public class Driver extends JPanel{
 	Rook brook1 = new Rook(1, "black");
 	Rook brook2 = new Rook(8, "black");
 	
-	Bishop bishop1 = new Bishop(3, "black");
-	Bishop bishop2 = new Bishop(6, "black");
+	Bishop bbishop1 = new Bishop(3, "black");
+	Bishop bbishop2 = new Bishop(6, "black");
 	
 	Pawn bpawn1 = new Pawn(9, "black");
 	Pawn bpawn2 = new Pawn(10, "black");
@@ -65,6 +68,8 @@ public class Driver extends JPanel{
 	King bking = new King(3, "black");
 	
 	int turn = 0;
+	static Point[] move = new Point[2];
+	
 	
 	public void paint(Graphics g) {
 		int a = 1;
@@ -116,6 +121,20 @@ public class Driver extends JPanel{
 	}
 	
 	public Driver() {
+		board[0][0] = brook1;
+		board[0][1] = bknight1;
+		board[0][2] = bbishop1;
+		board[0][3] = bqueen;
+		board[0][4] = bking;
+		board[0][5] = bbishop2;
+		board[0][6] = bknight2;
+		board[0][7] = brook2;
+		for (int i = 2; i < 6; i++) {
+			for (int j = 0; j < 8; j++) {
+				board[i][j] = null;
+			}
+		}
+		
 	}
 	
 	public void drawRotate(BufferedImage image, int x, int y, Graphics g) {
@@ -127,6 +146,8 @@ public class Driver extends JPanel{
 	    g.drawImage(op.filter(image, null), x, y, 100, 100, this);
 		
 	}
+	
+	//main method
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Chess");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -141,7 +162,53 @@ public class Driver extends JPanel{
 		
 		frame.setVisible(true);
 		
+		frame.addMouseListener(new MouseListener(){
 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if (move[0] == null) {
+					move[0] = MouseInfo.getPointerInfo().getLocation();
+					System.out.println(move[0].toString());
+				}
+				else if (move[1] == null) {
+					move[1] = MouseInfo.getPointerInfo().getLocation();
+					System.out.println(move[1].toString());
+				}
+				else {
+					move[0] = null;
+					move[1] = null;
+					System.out.println("Reset the move.");
+				}
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			
+		});
 	}
 	
 

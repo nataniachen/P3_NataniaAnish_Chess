@@ -8,9 +8,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 public class Piece {
 	    private int position;
+	    
 	    public Piece(int A) {
 	        position = A;
 	    }
+	    
 	    public int getPosition() {
 	        return position;
 	    }
