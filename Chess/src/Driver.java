@@ -8,6 +8,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -20,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class Driver extends JPanel{
-	Piece[][] board = new Piece[8][8];
+	private static Piece[][] board = new Piece[8][8];
 	
 	//white pieces
 	Rook wrook1 = new Rook(57, "white");
@@ -33,17 +34,17 @@ public class Driver extends JPanel{
 	Bishop wbishop1 = new Bishop(59, "white");
 	Bishop wbishop2 = new Bishop(62, "white");
 	
-	Pawn wpawn1 = new Pawn(51, "white");
-	Pawn wpawn2 = new Pawn(52, "white");
-	Pawn wpawn3 = new Pawn(53, "white");
-	Pawn wpawn4 = new Pawn(54, "white");
-	Pawn wpawn5 = new Pawn(55, "white");
-	Pawn wpawn6 = new Pawn(56, "white");
-	Pawn wpawn7 = new Pawn(57, "white");
-	Pawn wpawn8 = new Pawn(58, "white");
+	Pawn wpawn1 = new Pawn(49, "white");
+	Pawn wpawn2 = new Pawn(50, "white");
+	Pawn wpawn3 = new Pawn(51, "white");
+	Pawn wpawn4 = new Pawn(52, "white");
+	Pawn wpawn5 = new Pawn(53, "white");
+	Pawn wpawn6 = new Pawn(54, "white");
+	Pawn wpawn7 = new Pawn(55, "white");
+	Pawn wpawn8 = new Pawn(56, "white");
 
-	Queen wqueen = new Queen(4, "white");
-	King wking = new King(3, "white");
+	Queen wqueen = new Queen(60, "white");
+	King wking = new King(61, "white");
 	
 	//black pieces
 	Knight bknight1 = new Knight(2, "black");
@@ -68,7 +69,6 @@ public class Driver extends JPanel{
 	King bking = new King(3, "black");
 	
 	int turn = 0;
-	static Point[] move = new Point[2];
 	
 	
 	public void paint(Graphics g) {
@@ -94,26 +94,26 @@ public class Driver extends JPanel{
 	}
 	
 	public void drawPieces(Graphics g) {
-		g.drawImage(wpawn1.getImage(), 0,  602,  100,  95, this);
-		g.drawImage(wpawn2.getImage(), 100,  602,  100,  95, this);
-		g.drawImage(wpawn3.getImage(), 200,  602,  100,  95, this);
-		g.drawImage(wpawn4.getImage(), 300,  602,  100,  95, this);
-		g.drawImage(wpawn5.getImage(), 400,  602,  100,  95, this);
-		g.drawImage(wpawn6.getImage(), 500,  602,  100,  95, this);
-		g.drawImage(wpawn7.getImage(), 600,  602,  100,  95, this);
-		g.drawImage(wpawn8.getImage(), 700,  602,  100,  95, this);
+		g.drawImage(wpawn1.getImage(), wpawn1.getX(),  wpawn1.getY()+2,  100,  95, this);
+		g.drawImage(wpawn2.getImage(), wpawn2.getX(),  wpawn2.getY()+2,  100,  95, this);
+		g.drawImage(wpawn3.getImage(), wpawn3.getX(),  wpawn3.getY()+2,  100,  95, this);
+		g.drawImage(wpawn4.getImage(), wpawn4.getX(),  wpawn4.getY()+2,  100,  95, this);
+		g.drawImage(wpawn5.getImage(), wpawn5.getX(),  wpawn5.getY()+2,  100,  95, this);
+		g.drawImage(wpawn6.getImage(), wpawn6.getX(),  wpawn6.getY()+2,  100,  95, this);
+		g.drawImage(wpawn7.getImage(), wpawn7.getX(),  wpawn7.getY()+2,  100,  95, this);
+		g.drawImage(wpawn8.getImage(), wpawn8.getX(),  wpawn8.getY()+2,  100,  95, this);
 		
-	    g.drawImage(wknight1.getImage(), 100, 705, 100, 90, this);
-	    g.drawImage(wknight2.getImage(),  600,  705, 100, 90,  this);
+	    g.drawImage(wknight1.getImage(), wknight1.getX(), wknight1.getY(), 100, 90, this);
+	    g.drawImage(wknight2.getImage(),  wknight2.getX(),  wknight2.getY(), 100, 90,  this);
 	    
-	    g.drawImage(wrook1.getImage(),  0,  695,  100, 100, this);
-	    g.drawImage(wrook2.getImage(),  700,  695,  100, 100, this);
+	    g.drawImage(wrook1.getImage(),  wrook1.getX(),  wrook1.getY(),  100, 100, this);
+	    g.drawImage(wrook2.getImage(),  wrook2.getX(),  wrook2.getY(),  100, 100, this);
 	    
-	    g.drawImage(wbishop1.getImage(),  200,  700,  100, 100, this);
-	    g.drawImage(wbishop2.getImage(),  500,  700,  100, 100, this); 
+	    g.drawImage(wbishop1.getImage(),  wbishop1.getX(),  wbishop1.getY(),  100, 100, this);
+	    g.drawImage(wbishop2.getImage(),  wbishop2.getX(),  wbishop2.getY(),  100, 100, this); 
 	    
-	    g.drawImage(wqueen.getImage(),  400,  700,  100, 100, this);
-	    g.drawImage(wking.getImage(),  300,  700,  100, 100, this); 
+	    g.drawImage(wqueen.getImage(),  wqueen.getX(),  wqueen.getY(),  100, 100, this);
+	    g.drawImage(wking.getImage(),  wking.getX(),  wking.getY(),  100, 100, this); 
 	    
 	    //drawing the pieces on the other side
 	    drawRotate(bking.getImage(), 400, 2, g);
@@ -129,11 +129,29 @@ public class Driver extends JPanel{
 		board[0][5] = bbishop2;
 		board[0][6] = bknight2;
 		board[0][7] = brook2;
+		
 		for (int i = 2; i < 6; i++) {
 			for (int j = 0; j < 8; j++) {
 				board[i][j] = null;
 			}
 		}
+		board[6][0] = wpawn1;
+		board[6][1] = wpawn2;
+		board[6][2] = wpawn3;
+		board[6][3] = wpawn4;
+		board[6][4] = wpawn5;
+		board[6][5] = wpawn6;
+		board[6][6] = wpawn7;
+		board[6][7] = wpawn8;
+		
+		board[7][0] = wrook1;
+		board[7][1] = wknight1;
+		board[7][2] = wbishop1;
+		board[7][3] = wqueen;
+		board[7][4] = wking;
+		board[7][5] = wbishop2;
+		board[7][6] = wknight2;
+		board[7][7] = wrook2;
 		
 	}
 	
@@ -147,8 +165,10 @@ public class Driver extends JPanel{
 		
 	}
 	
+	
 	//main method
 	public static void main(String[] args) {
+		Graphics g;
 		JFrame frame = new JFrame("Chess");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -161,54 +181,9 @@ public class Driver extends JPanel{
 		frame.setBackground(Color.LIGHT_GRAY);
 		
 		frame.setVisible(true);
-		
-		frame.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				if (move[0] == null) {
-					move[0] = MouseInfo.getPointerInfo().getLocation();
-					System.out.println(move[0].toString());
-				}
-				else if (move[1] == null) {
-					move[1] = MouseInfo.getPointerInfo().getLocation();
-					System.out.println(move[1].toString());
-				}
-				else {
-					move[0] = null;
-					move[1] = null;
-					System.out.println("Reset the move.");
-				}
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			
-		});
+		Movement listener = new Movement(board, frame);
+		frame.addMouseListener((MouseListener) listener);
+		frame.addMouseMotionListener((MouseMotionListener) listener);
 	}
 	
 
