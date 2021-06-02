@@ -21,28 +21,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 		// TODO Auto-generated constructor stub
 	}
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			/*if (move[0] == null) {
-				move[0] = new Point(e.getPoint().x, e.getPoint().y);
-				System.out.println(move[0].toString());
-			}
-			else if (move[1] == null) {
-				move[1] = new Point(e.getPoint().x, e.getPoint().y);
-				System.out.println(move[1].toString());
-			
-				for (int i = 0; i < 8; i++) {
-					for (int j = 0; j < 8; j++) {
-						//if (mouseOnPiece((board[i][j]), move[0].getX(), move[0].getY())) {
-							//g.drawImage(board[i][j].getImg(), 100, 100, 100, 100, this);	
-						//}
-					}
-				}
-				
-				move[0] = null;
-				move[1] = null;
-				System.out.println("Reset the move.");
-			}
-			*/
+
 		}
 		
 		
@@ -68,6 +47,9 @@ public class Movement implements MouseListener, MouseMotionListener{
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
+			board[a][b].setX((int)((e.getPoint().x)/100)*100);
+			board[a][b].setY((int)((e.getPoint().y)/100)*100);
+			GUI.repaint();
 		}
 
 		@Override
@@ -85,19 +67,18 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			System.out.println("bypass1");
 			if (board[a][b]!=null) {
 				board[a][b].setX((int)(e.getPoint().x-offsetX));
 				board[a][b].setY((int)(e.getPoint().y-offsetY));
 			}
-			System.out.println("bypass2");
 			GUI.repaint();
-			System.out.println("bypass3");
+
 		}
 
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			// TODO Auto-generated method stub
+			
 			
 		}
 		
