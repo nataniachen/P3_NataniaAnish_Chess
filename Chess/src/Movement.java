@@ -23,7 +23,6 @@ public class Movement implements MouseListener, MouseMotionListener{
 		// TODO Auto-generated constructor stub
 	}
 		public void mouseClicked(MouseEvent e) {
-
 		}
 		
 		@Override
@@ -128,10 +127,17 @@ public class Movement implements MouseListener, MouseMotionListener{
 			if (piece == null) {
 				return false;
 			}
-			if ((piece.getColor() == "black" && turn%2 != 0) || (piece.getColor() == "white" && turn%2 == 0)) {
+			//find if the click is on a piece
+			if (piece.getX() <= x &&  piece.getX()+100 >= x && piece.getY() <= y && piece.getY()+100>=y) {
+				if ((piece.getColor() == "black" && turn%2 != 0) || (piece.getColor() == "white" && turn%2 == 0)) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+			else {
 				return false;
 			}
-			//find if the click is on a piece
-			return piece.getX() <= x &&  piece.getX()+100 >= x && piece.getY() <= y && piece.getY()+100>=y;
 		}
 }
