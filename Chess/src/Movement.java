@@ -10,6 +10,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 	int offsetY;
 	int a;
 	int b;
+	int ogX, ogY;
 	private Piece board[][];
 	private JFrame GUI;
 	private Piece piece;
@@ -24,21 +25,25 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 		}
 		
-		
 		@Override
 		public void mousePressed(MouseEvent e) {
 			int x = (int)e.getPoint().x;
 			int y = (int)e.getPoint().y;
+			
+			aa:
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
 					if (mouseOnPiece((board[i][j]), x, y)) {
+						//save the original position in case move is invalid
+						ogX = board[i][j].getX();
+						ogY = board[i][j].getY();
+						//offset mouse-piece
 						offsetX = x-board[i][j].getX();
 						offsetY = y-board[i][j].getY();
 						//obtaining the piece
 						a=i;
 						b=j;
-						System.out.println("piece detection successful");
-						break;
+						break aa;
 					}
 				}
 			}
@@ -49,6 +54,29 @@ public class Movement implements MouseListener, MouseMotionListener{
 			// TODO Auto-generated method stub
 			board[a][b].setX((int)((e.getPoint().x)/100)*100);
 			board[a][b].setY((int)((e.getPoint().y)/100)*100);
+
+			aa:
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
+					if (board[a][b].getY() == 100*i && board[a][b].getX() == 100*j) {
+						//function goes here because both positions are available
+						if (board[a][b].canMove(b, a, j, i)) {
+						if (board[i][j] != null) {
+							board[i][j].setX(800);
+							board[i][j] = null;
+						}
+						board[i][j] = board[a][b];
+						board[a][b] = null;
+						break aa;
+						}
+						else {
+							board[a][b].setX((int)(ogX));
+							board[a][b].setY((int)(ogY));
+							break aa;
+						}
+					}
+				}
+			}
 			GUI.repaint();
 		}
 
@@ -84,7 +112,6 @@ public class Movement implements MouseListener, MouseMotionListener{
 		
 		public static boolean mouseOnPiece(Piece piece, int x, int y) {
 			if (piece == null) {
-				System.out.println("no piece!");
 				return false;
 			}
 			//find if the click is on a piece

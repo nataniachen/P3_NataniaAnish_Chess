@@ -11,6 +11,7 @@ public class Piece {
 		private int x;
 		private int y;
 		private BufferedImage img;
+		protected Color colour;
 		
 	    public Piece(int A) {
 	        position = A;
@@ -46,6 +47,38 @@ public class Piece {
 	    case 8:
 	        x = 700;
 	        y = 0;
+	        break;
+	    case 9:
+	        x = 0;
+	        y = 100;
+	        break;
+	    case 10:
+	        x = 100;
+	        y = 100;
+	        break;
+	    case 11:
+	        x = 200;
+	        y = 100;
+	        break;
+	    case 12:
+	        x = 300;
+	        y = 100;
+	        break;
+	    case 13:
+	        x = 400;
+	        y = 100;
+	        break;
+	    case 14:
+	        x = 500;
+	        y = 100;
+	        break;
+	    case 15:
+	        x = 600;
+	        y = 100;
+	        break;
+	    case 16:
+	        x = 700;
+	        y = 100;
 	        break;
 	    case 49:
 	        x = 0;
@@ -147,5 +180,10 @@ public class Piece {
 		
 		public void setY(int y) {
 			this.y= y;
+		}
+		
+		//parameters: one: og X, two: og Y, three: new X, four: new Y
+		public boolean canMove(int one, int two, int three, int four) {
+			return false;
 		}
 	}

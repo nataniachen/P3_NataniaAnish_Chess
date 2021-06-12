@@ -17,5 +17,15 @@ String color;
 	
 	public BufferedImage getImage() {
 		return pawn;
+	};
+	
+	public boolean canMove(int one, int two, int three, int four) {
+		if (color == "white" && one == three && (four == two-2 | four == two-1)) {
+			return true;
+		}
+		else if (color == "black" && one == three && (four == two+2 | four == two+1)) {
+			return true;
+		}
+		return false;
 	}
 }
