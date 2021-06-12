@@ -2,19 +2,53 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Movement implements MouseListener, MouseMotionListener{
 	int offsetX;
 	int offsetY;
 	int a;
 	int b;
+	int ogX, ogY;
 	private Piece board[][];
 	private JFrame GUI;
 	private Piece piece;
 	static Point[] move = new Point[2];
 
+	void playMusic(String musicLocation) {
+		
+		try {
+			
+			File musicPath = new File(musicLocation);
+			
+			if (musicPath.exists()) {
+				
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+				
+				JOptionPane.showMessageDialog(null, "Press OK to Stop");
+				
+			} else {
+				
+				System.out.println("Can't find file");
+				
+			}
+			
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+	}
+	
 		public Movement(Piece[][] board, JFrame frame) {
 			this.board = board;
 			GUI = frame;
@@ -22,27 +56,9 @@ public class Movement implements MouseListener, MouseMotionListener{
 	}
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
-			/*if (move[0] == null) {
-				move[0] = new Point(e.getPoint().x, e.getPoint().y);
-				System.out.println(move[0].toString());
-			}
-			else if (move[1] == null) {
-				move[1] = new Point(e.getPoint().x, e.getPoint().y);
-				System.out.println(move[1].toString());
+
+						
 			
-				for (int i = 0; i < 8; i++) {
-					for (int j = 0; j < 8; j++) {
-						//if (mouseOnPiece((board[i][j]), move[0].getX(), move[0].getY())) {
-							//g.drawImage(board[i][j].getImg(), 100, 100, 100, 100, this);	
-						//}
-					}
-				}
-				
-				move[0] = null;
-				move[1] = null;
-				System.out.println("Reset the move.");
-			}
-			*/
 		}
 		
 		
@@ -50,16 +66,21 @@ public class Movement implements MouseListener, MouseMotionListener{
 		public void mousePressed(MouseEvent e) {
 			int x = (int)e.getPoint().x;
 			int y = (int)e.getPoint().y;
+
+			aa:
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
 					if (mouseOnPiece((board[i][j]), x, y)) {
+						//save the original position in case move is invalid
+						ogX = board[i][j].getX();
+						ogY = board[i][j].getY();
+						//offset mouse-piece
 						offsetX = x-board[i][j].getX();
 						offsetY = y-board[i][j].getY();
 						//obtaining the piece
 						a=i;
 						b=j;
-						System.out.println("piece detection successful");
-						break;
+						break aa;
 					}
 				}
 			}
@@ -68,7 +89,33 @@ public class Movement implements MouseListener, MouseMotionListener{
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-		}
+			board[a][b].setX((int)((e.getPoint().x)/100)*100);
+			board[a][b].setY((int)((e.getPoint().y)/100)*100);
+			GUI.repaint();
+
+			aa:
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
+					if (board[a][b].getY() == 100*i && board[a][b].getX() == 100*j) {
+						//function goes here because both positions are available
+						if (board[a][b].canMove(b, a, j, i)) {
+							if (board[i][j] != null) {
+								board[i][j].setX(800);
+								board[i][j] = null;
+							}
+						board[i][j] = board[a][b];
+						board[a][b] = null;
+						break aa;
+						}
+						else {
+							board[a][b].setX((int)(ogX));
+							board[a][b].setY((int)(ogY));
+							break aa;
+						}
+					}
+				}
+			}
+		} String filepath = "sound";
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
@@ -85,14 +132,14 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			System.out.println("bypass1");
+			//System.out.println("bypass1");
 			if (board[a][b]!=null) {
 				board[a][b].setX((int)(e.getPoint().x-offsetX));
 				board[a][b].setY((int)(e.getPoint().y-offsetY));
 			}
-			System.out.println("bypass2");
+			//System.out.println("bypass2");
 			GUI.repaint();
-			System.out.println("bypass3");
+			//System.out.println("bypass3");
 		}
 
 		@Override

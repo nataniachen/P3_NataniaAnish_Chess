@@ -18,4 +18,13 @@ public class Bishop extends Piece {
 		public BufferedImage getImage() {
 			return bishop;
 		}
+		
+		public boolean canMove(int one, int two, int three, int four) {
+			
+			if ((three >= one+1 || three <= one-1) && (four >= two+1 || four <= two-1)) {
+				return true;
+			} return false;
+			
+		}
+		
 }

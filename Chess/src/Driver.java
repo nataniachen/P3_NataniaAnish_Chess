@@ -66,7 +66,7 @@ public class Driver extends JPanel{
 	Pawn bpawn8 = new Pawn(16, "black");
 	
 	Queen bqueen = new Queen(4, "black");
-	King bking = new King(3, "black");
+	King bking = new King(5, "black");
 	
 	int turn = 0;
 	
@@ -94,17 +94,17 @@ public class Driver extends JPanel{
 	}
 	
 	public void drawPieces(Graphics g) {
-		g.drawImage(wpawn1.getImage(), wpawn1.getX(),  wpawn1.getY()+2,  100,  95, this);
-		g.drawImage(wpawn2.getImage(), wpawn2.getX(),  wpawn2.getY()+2,  100,  95, this);
-		g.drawImage(wpawn3.getImage(), wpawn3.getX(),  wpawn3.getY()+2,  100,  95, this);
-		g.drawImage(wpawn4.getImage(), wpawn4.getX(),  wpawn4.getY()+2,  100,  95, this);
-		g.drawImage(wpawn5.getImage(), wpawn5.getX(),  wpawn5.getY()+2,  100,  95, this);
-		g.drawImage(wpawn6.getImage(), wpawn6.getX(),  wpawn6.getY()+2,  100,  95, this);
-		g.drawImage(wpawn7.getImage(), wpawn7.getX(),  wpawn7.getY()+2,  100,  95, this);
-		g.drawImage(wpawn8.getImage(), wpawn8.getX(),  wpawn8.getY()+2,  100,  95, this);
+		g.drawImage(wpawn1.getImage(), wpawn1.getX(),  wpawn1.getY(),  100,  100, this);
+		g.drawImage(wpawn2.getImage(), wpawn2.getX(),  wpawn2.getY(),  100,  100, this);
+		g.drawImage(wpawn3.getImage(), wpawn3.getX(),  wpawn3.getY(),  100,  100, this);
+		g.drawImage(wpawn4.getImage(), wpawn4.getX(),  wpawn4.getY(),  100,  100, this);
+		g.drawImage(wpawn5.getImage(), wpawn5.getX(),  wpawn5.getY(),  100,  100, this);
+		g.drawImage(wpawn6.getImage(), wpawn6.getX(),  wpawn6.getY(),  100,  100, this);
+		g.drawImage(wpawn7.getImage(), wpawn7.getX(),  wpawn7.getY(),  100,  100, this);
+		g.drawImage(wpawn8.getImage(), wpawn8.getX(),  wpawn8.getY(),  100,  100, this);
 		
-	    g.drawImage(wknight1.getImage(), wknight1.getX(), wknight1.getY(), 100, 90, this);
-	    g.drawImage(wknight2.getImage(),  wknight2.getX(),  wknight2.getY(), 100, 90,  this);
+	    g.drawImage(wknight1.getImage(), wknight1.getX(), wknight1.getY(), 100, 100, this);
+	    g.drawImage(wknight2.getImage(),  wknight2.getX(),  wknight2.getY(), 100, 100,  this);
 	    
 	    g.drawImage(wrook1.getImage(),  wrook1.getX(),  wrook1.getY(),  100, 100, this);
 	    g.drawImage(wrook2.getImage(),  wrook2.getX(),  wrook2.getY(),  100, 100, this);
@@ -116,11 +116,30 @@ public class Driver extends JPanel{
 	    g.drawImage(wking.getImage(),  wking.getX(),  wking.getY(),  100, 100, this); 
 	    
 	    //drawing the pieces on the other side
-	    drawRotate(bking.getImage(), 400, 2, g);
+	    g.drawImage(brook1.getImage(),  brook1.getX(),  brook1.getY(),  100, 100, this);
+	    g.drawImage(bknight1.getImage(),  bknight1.getX(),  bknight1.getY(),  100, 100, this);
+	    g.drawImage(bbishop1.getImage(),  bbishop1.getX(),  bbishop1.getY(),  100, 100, this);
+	    g.drawImage(bqueen.getImage(),  bqueen.getX(),  bqueen.getY(),  100, 100, this);
+	    g.drawImage(bking.getImage(),  bking.getX(),  bking.getY(),  100, 100, this);
+	    g.drawImage(bbishop2.getImage(),  bbishop2.getX(),  bbishop2.getY(),  100, 100, this);
+	    g.drawImage(bknight2.getImage(),  bknight2.getX(),  bknight2.getY(),  100, 100, this);
+	    g.drawImage(brook2.getImage(),  brook2.getX(),  brook2.getY(),  100, 100, this);
+
+	    g.drawImage(bpawn1.getImage(),  bpawn1.getX(),  bpawn1.getY(),  100, 100, this);
+	    g.drawImage(bpawn2.getImage(),  bpawn2.getX(),  bpawn2.getY(),  100, 100, this);
+	    g.drawImage(bpawn3.getImage(),  bpawn3.getX(),  bpawn3.getY(),  100, 100, this);
+	    g.drawImage(bpawn4.getImage(),  bpawn4.getX(),  bpawn4.getY(),  100, 100, this);
+	    g.drawImage(bpawn5.getImage(),  bpawn5.getX(),  bpawn5.getY(),  100, 100, this);
+	    g.drawImage(bpawn6.getImage(),  bpawn6.getX(),  bpawn6.getY(),  100, 100, this);
+	    g.drawImage(bpawn7.getImage(),  bpawn7.getX(),  bpawn7.getY(),  100, 100, this);
+	    g.drawImage(bpawn8.getImage(),  bpawn8.getX(),  bpawn8.getY(),  100, 100, this);
+	    System.out.println("wpawn" + wpawn1.getY());
+	    System.out.println("bpawn" + bpawn1.getY());
 
 	}
 	
 	public Driver() {
+		//black pieces
 		board[0][0] = brook1;
 		board[0][1] = bknight1;
 		board[0][2] = bbishop1;
@@ -129,6 +148,17 @@ public class Driver extends JPanel{
 		board[0][5] = bbishop2;
 		board[0][6] = bknight2;
 		board[0][7] = brook2;
+
+		board[1][0] = bpawn1;
+		board[1][1] = bpawn2;
+		board[1][2] = bpawn3;
+		board[1][3] = bpawn4;
+		board[1][4] = bpawn5;
+		board[1][5] = bpawn6;
+		board[1][6] = bpawn7;
+		board[1][7] = bpawn8;
+
+		//empty space
 		
 		for (int i = 2; i < 6; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -174,7 +204,7 @@ public class Driver extends JPanel{
 		
 		JLabel textLabel = new JLabel("WEEWOOOOOOOOOOOOO", SwingConstants.CENTER);
 		frame.setLayout(new GridLayout());
-		frame.setSize(800, 800);
+		frame.setSize(1000, 1000);
 		
 		frame.getContentPane().add(new Driver());
 		frame.setLocationRelativeTo(null);

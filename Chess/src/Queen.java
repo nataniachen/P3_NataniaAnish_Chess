@@ -18,4 +18,12 @@ public class Queen extends Piece {
 		public BufferedImage getImage() {
 			return queen;
 		}
+		
+		public boolean canMove(int one, int two, int three, int four) {
+		
+			if (((((three >= one+1 || three <= one-1)) && four == two) || (((four <= two+1 || four >= two-1)) && three == one)) || ((three >= one+1 || three <= one-1) && (four >= two+1 || four <= two-1))) {
+				return true;
+			} return false;
+		
+		}
 }

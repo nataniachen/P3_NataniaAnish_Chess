@@ -18,4 +18,13 @@ public class Rook extends Piece {
 		public BufferedImage getImage() {
 			return rook;
 		}
+		
+		public boolean canMove(int one, int two, int three, int four) {
+			
+			if ((((three >= one+1 || three <= one-1)) && four == two) || (((four <= two+1 || four >= two-1)) && three == one)) {
+				return true;
+			} return false;
+			
+		}
+		
 }
