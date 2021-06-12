@@ -62,6 +62,12 @@ public class Movement implements MouseListener, MouseMotionListener{
 						//function goes here because both positions are available
 						if (board[a][b].canMove(b, a, j, i)) {
 						if (board[i][j] != null) {
+							//no taking pieces of same color
+							if (board[i][j].getColor() == board[a][b].getColor()) {
+								board[a][b].setX((int)(ogX));
+								board[a][b].setY((int)(ogY));
+								break aa;
+							}
 							board[i][j].setX(800);
 							board[i][j] = null;
 						}

@@ -6,8 +6,8 @@ public class King extends Piece {
 
 		public King(int a, String color) {
 			super(a);
-			this.color = color;
-			if (this.color == "white") {
+			super.color = color;
+			if (super.color == "white") {
 				king = super.createImg("images/king.png");
 			}
 			else {
@@ -18,4 +18,13 @@ public class King extends Piece {
 		public BufferedImage getImage() {
 			return king;
 		}
+		
+		public boolean canMove(int one, int two, int three, int four) {
+			
+			if (three == one+1 || three == one-1 || four == two-1 || four == two+1) {
+				return true;
+			} return false;
+				
+	}
+
 }

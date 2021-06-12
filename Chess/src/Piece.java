@@ -11,7 +11,7 @@ public class Piece {
 		private int x;
 		private int y;
 		private BufferedImage img;
-		protected Color colour;
+		protected String color;
 		
 	    public Piece(int A) {
 	        position = A;
@@ -180,6 +180,10 @@ public class Piece {
 		
 		public void setY(int y) {
 			this.y= y;
+		}
+		
+		public String getColor() {
+			return color;
 		}
 		
 		//parameters: one: og X, two: og Y, three: new X, four: new Y

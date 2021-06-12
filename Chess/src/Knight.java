@@ -2,12 +2,11 @@ import java.awt.image.BufferedImage;
 
 public class Knight extends Piece {
 	BufferedImage knight;
-	String color;
 
 		public Knight(int a, String color) {
 			super(a);
-			this.color = color;
-			if (this.color == "white") {
+			super.color = color;
+			if (super.color == "white") {
 				knight = super.createImg("images/knight.png");
 			}
 			else {
