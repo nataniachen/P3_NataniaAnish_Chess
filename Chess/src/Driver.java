@@ -116,26 +116,24 @@ public class Driver extends JPanel{
 	    g.drawImage(wking.getImage(),  wking.getX(),  wking.getY(),  100, 100, this); 
 	    
 	    //drawing the pieces on the other side
-	    drawRotate(brook1.getImage(), brook1.getX(), brook1.getY(), g);
-	    drawRotate(bknight1.getImage(), bknight1.getX(), bknight1.getY(), g);
-	    drawRotate(bbishop1.getImage(), bbishop1.getX(), bbishop1.getY(), g);
-	    drawRotate(bqueen.getImage(), bqueen.getX(), bqueen.getY(), g);
-	    drawRotate(bking.getImage(), bking.getX(), bking.getY(), g);
-	    drawRotate(bbishop2.getImage(), bbishop2.getX(), bbishop2.getY(), g);
-	    drawRotate(bknight2.getImage(), bknight2.getX(), bknight2.getY(), g);
-	    drawRotate(brook2.getImage(), brook2.getX(), brook2.getY(), g);
 	    
-	    drawRotate(bpawn1.getImage(), bpawn1.getX(), bpawn1.getY(), g);
-	    drawRotate(bpawn2.getImage(), bpawn2.getX(), bpawn2.getY(), g);
-	    drawRotate(bpawn3.getImage(), bpawn3.getX(), bpawn3.getY(), g);
-	    drawRotate(bpawn4.getImage(), bpawn4.getX(), bpawn4.getY(), g);
-	    drawRotate(bpawn5.getImage(), bpawn5.getX(), bpawn5.getY(), g);
-	    drawRotate(bpawn6.getImage(), bpawn6.getX(), bpawn6.getY(), g);
-	    drawRotate(bpawn7.getImage(), bpawn7.getX(), bpawn7.getY(), g);
-	    drawRotate(bpawn8.getImage(), bpawn8.getX(), bpawn8.getY(), g);
-	    System.out.println("wpawn" + wpawn1.getY());
-	    System.out.println("bpawn" + bpawn1.getY());
+	    g.drawImage(brook1.getImage(),  brook1.getX(),  brook1.getY(),  100, 100, this);
+	    g.drawImage(bknight1.getImage(),  bknight1.getX(),  bknight1.getY(),  100, 100, this);
+	    g.drawImage(bbishop1.getImage(),  bbishop1.getX(),  bbishop1.getY(),  100, 100, this);
+	    g.drawImage(bqueen.getImage(),  bqueen.getX(),  bqueen.getY(),  100, 100, this);
+	    g.drawImage(bking.getImage(),  bking.getX(),  bking.getY(),  100, 100, this);
+	    g.drawImage(bbishop2.getImage(),  bbishop2.getX(),  bbishop2.getY(),  100, 100, this);
+	    g.drawImage(bknight2.getImage(),  bknight2.getX(),  bknight2.getY(),  100, 100, this);
+	    g.drawImage(brook2.getImage(),  brook2.getX(),  brook2.getY(),  100, 100, this);
 
+	    	    g.drawImage(bpawn1.getImage(),  bpawn1.getX(),  bpawn1.getY(),  100, 100, this);
+	    	    g.drawImage(bpawn2.getImage(),  bpawn2.getX(),  bpawn2.getY(),  100, 100, this);
+	    	    g.drawImage(bpawn3.getImage(),  bpawn3.getX(),  bpawn3.getY(),  100, 100, this);
+	    	    g.drawImage(bpawn4.getImage(),  bpawn4.getX(),  bpawn4.getY(),  100, 100, this);
+	    	    g.drawImage(bpawn5.getImage(),  bpawn5.getX(),  bpawn5.getY(),  100, 100, this);
+	    	    g.drawImage(bpawn6.getImage(),  bpawn6.getX(),  bpawn6.getY(),  100, 100, this);
+	    	    g.drawImage(bpawn7.getImage(),  bpawn7.getX(),  bpawn7.getY(),  100, 100, this);
+	    	    g.drawImage(bpawn8.getImage(),  bpawn8.getX(),  bpawn8.getY(),  100, 100, this);
 	}
 	
 	public Driver() {

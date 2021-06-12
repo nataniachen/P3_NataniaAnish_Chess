@@ -15,6 +15,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 	private JFrame GUI;
 	private Piece piece;
 	static Point[] move = new Point[2];
+	public static int turn = 1;
 
 		public Movement(Piece[][] board, JFrame frame) {
 			this.board = board;
@@ -83,6 +84,13 @@ public class Movement implements MouseListener, MouseMotionListener{
 					}
 				}
 			}
+			turn++;
+		    if (turn%2 != 0) {
+		    	System.out.println("It's white's turn.");
+		    }
+		    else if (turn%2 == 0) {
+		    	System.out.println("It's black's turn.");
+		    }
 			GUI.repaint();
 		}
 
@@ -118,6 +126,9 @@ public class Movement implements MouseListener, MouseMotionListener{
 		
 		public static boolean mouseOnPiece(Piece piece, int x, int y) {
 			if (piece == null) {
+				return false;
+			}
+			if ((piece.getColor() == "black" && turn%2 != 0) || (piece.getColor() == "white" && turn%2 == 0)) {
 				return false;
 			}
 			//find if the click is on a piece
